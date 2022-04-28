@@ -1,0 +1,11 @@
+version: '3'
+services:
+  adsoft-api-graphql:
+    build: .
+    command: python manage.py runserver 0.0.0.0:80
+    volumes:
+    - .:/hackernews
+    ports:
+    - "80:80"
+    env_file:
+      - .env
