@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'hackernews.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hackernews',
+        'NAME': 'web_hackernews',
         'USER': 'postgres',
         'PASSWORD': 'adsoft',
-        'HOST': '34.125.152.192',
+        'HOST': '34.125.0.249',
         'PORT': '5432',
     }
 }
@@ -129,7 +129,15 @@ STATIC_URL = '/static/'
 
 GRAPHENE = {
     'SCHEMA': 'hackernews.schema.schema',
+    'MIDDLEWARE': [
+        'graphql_jwt.middleware.JSONWebTokenMiddleware',
+    ],
 }
+
+AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
